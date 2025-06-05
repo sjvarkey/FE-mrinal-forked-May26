@@ -273,7 +273,7 @@ color : rgba(255, 165, 100, 0.50);
 
 Now, let us see the 4th method of CSS Colors.
 
-# 4. HSC 
+# 4. HSL
 - It stands for **Hue**, **Saturation**, and **Lightness**.
 
 ## Example
