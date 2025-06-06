@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Flexbox Example</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 50%; /* Full width of the parent container */
+      background-color: lightgray;
+      padding: 10px;
+    }
+
+    .box {
+      height: 100px;
+      background-color: lightblue;
+      text-align: center;
+      padding-top: 40px;
+      color: white;
+      font-size: 16px;
+      flex-grow: 1; /* All boxes will grow equally when there is extra space */
+      /* flex-shrink: 1;  */
+      /* Boxes will shrink proportionally when there is not enough space */
+      margin: 0 10px;
+    }
+
+    .box1 {
+      background-color: lightcoral;
+      flex-grow: 2;
+    }
+
+    .box2 {
+      background-color: lightgreen;
+      
+    }
+
+    .box3 {
+      background-color: lightseagreen;
+      flex-shrink: 1;
+    }
+
+  
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="box box1">Box 1</div>
+    <div class="box box2">Box 2</div>
+    <div class="box box3">Box 3</div>
+  </div>
+</body>
+</html>
