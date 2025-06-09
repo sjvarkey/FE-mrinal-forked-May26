@@ -13,19 +13,22 @@
     }
 
     body {
-      line-height: 1.5;
+      line-height: 3;
       background-color: tomato;
     }
 
     .container {
       width:1200px;
+      height: 600px;
       margin: 100px auto;
       padding: 10px;
       display: grid;
       border: 2px solid black;
-
-      /* grid-template-columns:1fr 2fr 1fr ; */
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns:1fr 2fr 3fr ; 
+      /* grid-template-columns: repeat(4, 1fr); */
+      grid-template-rows:1fr 2fr 3fr ;
+      /* 100 px 200px 300px
+       */
       
     }
 
@@ -48,6 +51,11 @@
       <div class="item">Item 7</div>
       <div class="item">Item 8</div>
       <div class="item">Item 9</div>
+     
+
+
+    
+    
     </div>
   </body>
 </html>
