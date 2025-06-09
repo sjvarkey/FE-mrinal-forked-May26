@@ -13,13 +13,26 @@
         display: grid;
 
         grid-template-areas:
-        'top top top' ;
+        'top top top'
+        'navbar content sidebar ' ;
     }
 
     header{
        grid-area: top;
        border: 2px solid black; 
     }
+
+    nav{
+        grid-area:navbar ;
+    }
+
+     main{
+        grid-area: content;
+     }
+
+     aside{
+        grid-area: sidebar;
+     }
  </style>
 
 <body>
