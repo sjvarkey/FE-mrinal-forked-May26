@@ -63,6 +63,8 @@ console.log(cap['address']['country'])
 // add captain america movies
 cap.movies = ['civil war' , 'infinity war', 'winter soldier']
 
+cap.movies.pop()
+
 cap.isAvenger = false
 
 
