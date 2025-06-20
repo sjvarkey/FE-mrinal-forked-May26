@@ -3,13 +3,12 @@ function parent() {
   console.log(a);
 
   function child() {
-    a = 30;
-
     function child2() {
       console.log(a);
     }
-
+    a = 30;
     child2();
+ 
   }
   child();
 }
