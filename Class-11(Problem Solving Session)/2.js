@@ -5,8 +5,21 @@
 // Approach: Think of a way to convert the string into an array of words.
 
 function reverseWords(sentence) {
-    // Write code here
-  }
+     let words=  sentence.split(" ")
+     console.log(words)
+
+
+     let reversedArr = []
+
+     while(words.length>0){
+           reversedArr.push(words.pop())
+     }
+
+     return reversedArr.join(" ")
+
+
+}
   
   console.log(reverseWords("Hello world")); // "world Hello"
   console.log(reverseWords("JavaScript is fun")); // "fun is JavaScript"
+  console.log(reverseWords('Scaler Academy'))
