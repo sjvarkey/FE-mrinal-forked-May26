@@ -13,18 +13,27 @@
 
 function createTodoList() {
   let tasks = [];
+ 
   
-  function addTask(task) {
+  function addTask(work) {
+    return tasks.push({task:work, isCompleted:false})
   }
 
-  function removeTask(task) {
+  function removeTask(work) {
+    // Homework
+    // splice method
   }
 
-  function markComplete(task) {
+  function markComplete(work) {
+     let index = tasks.findIndex(singleTask=>singleTask.task === work)
+     tasks[index].isCompleted = true
   }
 
   function listTasks() {
+    console.log(tasks)
   }
+
+ 
 
   return {
     addTask,
@@ -32,16 +41,18 @@ function createTodoList() {
     markComplete,
     listTasks
   };
+
+
 }
 
 const todo = createTodoList();
 todo.addTask("Buy groceries");
-todo.addTask("Do laundry");
+todo.addTask("Do Laundry");
 todo.addTask("Clean room");
-todo.listTasks();
-console.log("-----");
-todo.markComplete("Buy groceries");
-todo.listTasks();
-console.log("-----");
-todo.removeTask("Do laundry");
-todo.listTasks();
+ todo.listTasks();
+// console.log("-----");
+todo.markComplete("Do Laundry");
+ todo.listTasks();
+// console.log("-----");
+// todo.removeTask("Do laundry");
+// todo.listTasks();
