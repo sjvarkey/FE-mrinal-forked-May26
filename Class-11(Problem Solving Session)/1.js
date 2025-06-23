@@ -12,7 +12,15 @@ function CelToFah(celsius) {
   }
   
   function convertTemperature(temp, unit) {
-    // Write code here
+     if(unit=='C'){
+        return CelToFah(temp) + "F"
+     }
+     else if(unit =='F'){
+        return FahToCel(temp) + 'C'
+     }
+     else{
+        return 'Invalid Unit , Pleas Enter C or F'
+     }
   }
   
   console.log(convertTemperature(100, "C")); // "212F"
