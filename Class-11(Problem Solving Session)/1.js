@@ -25,3 +25,4 @@ function CelToFah(celsius) {
   
   console.log(convertTemperature(100, "C")); // "212F"
   console.log(convertTemperature(32, "F"));  // "0C"
+  console.log(convertTemperature(48, "A"));  // "0C"
