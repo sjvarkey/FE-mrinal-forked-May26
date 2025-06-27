@@ -8,11 +8,38 @@
     />
     <title>Document</title>
   </head>
-  <body>
+  <body id="body-1">
     <button id="btn-1">Say Hello</button>
+    
 
     <script>
       // on clicking the button append hello to the page
+      // querySelector
+      // getElementByID
+
+      let helloBtn = document.getElementById('btn-1')
+
+      // Event Listners
+
+      helloBtn.addEventListener('click' , function(){
+         let helloDiv = document.createElement('div')
+           helloDiv.innerText = 'Hello'
+
+          let bodyElement=  document.getElementById('body-1')
+           console.log(bodyElement)
+
+           bodyElement.appendChild(helloDiv)
+
+          
+
+           
+      })
+    
+
+
+
+
+
     </script>
   </body>
 </html>
