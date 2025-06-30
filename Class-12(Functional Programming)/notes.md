@@ -417,3 +417,7 @@ console.log(totalSum)
 
 **Explanation:**
 Here 0 written after `}` is the initialising value of `acc`, this means `acc` will be initiated with 0, and `acc` is used to store the sum and `num` is the current element of an array at every iteration and at every iteration, `num` is added to `acc`.
+
+
+
+
