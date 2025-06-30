@@ -54,25 +54,7 @@
       //double clicking on them and attaches the fetched class to that card.
       // Also changes the data-color attribute to "used"
 
-      let cardsNodeList = document.querySelectorAll('.card')
-
-      console.log(cardsNodeList)
-
-      for(let i = 0 ; i < cardsNodeList.length; i ++ ){
-        cardsNodeList[i].addEventListener('dblclick' , function(e){
-
-         console.log(e) // In this line explain all about the e object
-
-          console.log(e.currentTarget)
-           let classTobeAttached = e.currentTarget.getAttribute('data-color')
-
-           console.log(classTobeAttached)
-
-           e.currentTarget.classList.add(classTobeAttached)
-           e.currentTarget.setAttribute('data-color' , 'used')
-
-        })
-      }
+    
     </script>
   </body>
 </html>
