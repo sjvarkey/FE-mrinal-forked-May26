@@ -111,6 +111,40 @@
     <script>
       // Q Make the filter work
 
+      let dropDown = document.querySelector('select')
+      console.log(dropDown)
+
+      dropDown.addEventListener('change' , function(){
+       let dropDownValue =  dropDown.value
+
+       let allTickets = document.querySelectorAll('.price')
+       console.log(allTickets)
+
+       if(dropDownValue=='none'){
+        for(let i=0 ; i<allTickets.length ; i++){
+         allTickets[i].parentElement.style.display ='block'
+        }
+       }
+
+       else{
+          for(let i=0 ; i<allTickets.length; i++){
+            // 
+            if(allTickets[i].getAttribute('data-category')!=dropDownValue){
+                allTickets[i].parentElement.style.display = 'none'
+            }
+            // drpVal = comedy
+            else{
+                  allTickets[i].parentElement.style.display = 'block'
+            }
+          }
+       }
+
+
+
+
+
+      })
+
       
     </script>
   </body>

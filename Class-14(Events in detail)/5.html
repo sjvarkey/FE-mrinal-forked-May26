@@ -39,7 +39,7 @@
     </style>
   </head>
   <body>
-    <div class = "card " data-color = "blue"></div>  
+    <div class = "card  " data-color = "blue" data-name="Monali"></div>  
     <div class = "card" data-color = "red"></div>
     <div class = "card" data-color = "blue"></div>
     <div class = "card" data-color = "red"></div>
@@ -67,9 +67,9 @@
 
             console.log(event)
 
-            let classTobeAttached = event.target.getAttribute('data-color')
-            event.target.classList.add(classTobeAttached)
-            event.target.setAttribute('data-color', ' ' )
+            let classTobeAttached = event.target.getAttribute('data-color') //blue
+            event.target.classList.add(classTobeAttached)// blue
+            event.target.setAttribute('data-color', 'sagar' )
             
 
           })
