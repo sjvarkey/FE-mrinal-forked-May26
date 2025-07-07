@@ -4,9 +4,13 @@ const addBtn = document.querySelector(".add-btn");
 const modalCont = document.querySelector(".modal-cont");
 const taskArea = document.querySelector(".textArea-cont");
 const mainCont = document.querySelector('.main-cont')
+const allPriorityColors = document.querySelectorAll('.priority-color')
+
+console.log(allPriorityColors)
 
 // Flags
 let addBtnFlag = false;
+let modalPriorityColor = 'lightpink'
 
 addBtn.addEventListener("click", function () {
   addBtnFlag = !addBtnFlag;
@@ -26,7 +30,8 @@ modalCont.addEventListener("keydown", function (e) {
     let id = shortid()
     console.log(id)
     let task = taskArea.value;
-    createTicket(task , id)
+
+    createTicket(task , id , modalPriorityColor)
     taskArea.value = "";
     modalCont.style.display='none'
     addBtnFlag = false
@@ -35,12 +40,12 @@ modalCont.addEventListener("keydown", function (e) {
 });
 
 // Create Ticket Function
-function createTicket(ticketTask , ticketID) {
+function createTicket(ticketTask , ticketID , ticketColor) {
   let ticketCont = document.createElement("div");
   ticketCont.setAttribute("class", "ticket-cont");
 
   ticketCont.innerHTML = `
-    <div class="ticket-color" style="background-color: lightpink;" ></div>
+    <div class="ticket-color" style="background-color: ${ticketColor};" ></div>
              <div class="ticket-id">${ticketID}</div>
              <div class="task-area">${ticketTask}</div>
               <div class="ticket-lock">
@@ -50,3 +55,16 @@ function createTicket(ticketTask , ticketID) {
 
     mainCont.appendChild(ticketCont)
 }
+
+// moving the active class on priority color boxes
+
+allPriorityColors.forEach(function(colorElem){
+    colorElem.addEventListener('click' , function(){
+       allPriorityColors.forEach(function(priorityColor){
+        priorityColor.classList.remove('active')
+       })
+
+     colorElem.classList.add('active')
+     modalPriorityColor = colorElem.classList[0]
+    })
+})
