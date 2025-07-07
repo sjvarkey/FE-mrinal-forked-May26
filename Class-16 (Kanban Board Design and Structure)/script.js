@@ -23,23 +23,25 @@ addBtn.addEventListener("click", function () {
 
 modalCont.addEventListener("keydown", function (e) {
   if (e.key == "Shift") {
+    let id = shortid()
+    console.log(id)
     let task = taskArea.value;
-    createTicket(task)
+    createTicket(task , id)
     taskArea.value = "";
     modalCont.style.display='none'
     addBtnFlag = false
- 
+   
   }
 });
 
 // Create Ticket Function
-function createTicket(ticketTask) {
+function createTicket(ticketTask , ticketID) {
   let ticketCont = document.createElement("div");
   ticketCont.setAttribute("class", "ticket-cont");
 
   ticketCont.innerHTML = `
     <div class="ticket-color" style="background-color: lightpink;" ></div>
-             <div class="ticket-id"></div>
+             <div class="ticket-id">${ticketID}</div>
              <div class="task-area">${ticketTask}</div>
               <div class="ticket-lock">
                 <i class="fa-solid fa-lock"></i>
