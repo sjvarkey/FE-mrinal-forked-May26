@@ -3,14 +3,17 @@
 const addBtn = document.querySelector(".add-btn");
 const modalCont = document.querySelector(".modal-cont");
 const taskArea = document.querySelector(".textArea-cont");
-const mainCont = document.querySelector('.main-cont')
-const allPriorityColors = document.querySelectorAll('.priority-color')
+const mainCont = document.querySelector(".main-cont");
+const allPriorityColors = document.querySelectorAll(".priority-color");
 
-console.log(allPriorityColors)
+const lockClass = "fa-lock";
+const unlockClass = "fa-lock-open";
+
+console.log(allPriorityColors);
 
 // Flags
 let addBtnFlag = false;
-let modalPriorityColor = 'lightpink'
+let modalPriorityColor = "lightpink";
 
 addBtn.addEventListener("click", function () {
   addBtnFlag = !addBtnFlag;
@@ -27,20 +30,19 @@ addBtn.addEventListener("click", function () {
 
 modalCont.addEventListener("keydown", function (e) {
   if (e.key == "Shift") {
-    let id = shortid()
-    console.log(id)
+    let id = shortid();
+    console.log(id);
     let task = taskArea.value;
 
-    createTicket(task , id , modalPriorityColor)
+    createTicket(task, id, modalPriorityColor);
     taskArea.value = "";
-    modalCont.style.display='none'
-    addBtnFlag = false
-   
+    modalCont.style.display = "none";
+    addBtnFlag = false;
   }
 });
 
 // Create Ticket Function
-function createTicket(ticketTask , ticketID , ticketColor) {
+function createTicket(ticketTask, ticketID, ticketColor) {
   let ticketCont = document.createElement("div");
   ticketCont.setAttribute("class", "ticket-cont");
 
@@ -49,22 +51,49 @@ function createTicket(ticketTask , ticketID , ticketColor) {
              <div class="ticket-id">${ticketID}</div>
              <div class="task-area">${ticketTask}</div>
               <div class="ticket-lock">
-                <i class="fa-solid fa-lock"></i>
+                <i class="fa-solid fa-lock"></i> 
+            
+                
               </div>
     `;
 
-    mainCont.appendChild(ticketCont)
+  mainCont.appendChild(ticketCont);
+
+  handleLock(ticketCont);
 }
 
 // moving the active class on priority color boxes
 
-allPriorityColors.forEach(function(colorElem){
-    colorElem.addEventListener('click' , function(){
-       allPriorityColors.forEach(function(priorityColor){
-        priorityColor.classList.remove('active')
-       })
+allPriorityColors.forEach(function (colorElem) {
+  colorElem.addEventListener("click", function () {
+    allPriorityColors.forEach(function (priorityColor) {
+      priorityColor.classList.remove("active");
+    });
 
-     colorElem.classList.add('active')
-     modalPriorityColor = colorElem.classList[0]
-    })
-})
+    colorElem.classList.add("active");
+    modalPriorityColor = colorElem.classList[0];
+  });
+});
+
+// locking Mechanism
+function handleLock(ticket) {
+  let ticketLockCont = ticket.querySelector(".ticket-lock");
+  let ticketLockIcon = ticketLockCont.children[0];
+  let ticketTaskArea = ticket.querySelector(".task-area");
+
+  ticketLockIcon.addEventListener("click", function () {
+    if (ticketLockIcon.classList.contains(lockClass)) {
+      ticketLockIcon.classList.remove(lockClass);
+      ticketLockIcon.classList.add(unlockClass);
+
+      // when the lock is open allow to edit task
+      ticketTaskArea.setAttribute("contenteditable", "true");
+    } else {
+      ticketLockIcon.classList.remove(unlockClass);
+      ticketLockIcon.classList.add(lockClass);
+      ticketTaskArea.setAttribute("contenteditable", "false");
+    }
+
+    console.log(ticketLockIcon);
+  });
+}
