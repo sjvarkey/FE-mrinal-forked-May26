@@ -6,6 +6,8 @@ const taskArea = document.querySelector(".textArea-cont");
 const mainCont = document.querySelector(".main-cont");
 const allPriorityColors = document.querySelectorAll(".priority-color");
 
+const colors = ['lightpink' , 'lightgreen' , 'lightblue' , 'black']
+
 const lockClass = "fa-lock";
 const unlockClass = "fa-lock-open";
 
@@ -97,3 +99,5 @@ function handleLock(ticket) {
     console.log(ticketLockIcon);
   });
 }
+
+// Chaning the color band of tickets
