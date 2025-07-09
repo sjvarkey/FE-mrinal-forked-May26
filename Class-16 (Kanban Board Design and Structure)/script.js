@@ -62,6 +62,7 @@ function createTicket(ticketTask, ticketID, ticketColor) {
   mainCont.appendChild(ticketCont);
 
   handleLock(ticketCont);
+  handleColor(ticketCont)
 }
 
 // moving the active class on priority color boxes
@@ -101,3 +102,26 @@ function handleLock(ticket) {
 }
 
 // Chaning the color band of tickets
+
+function handleColor(ticket){
+  let ticketColorBand =  ticket.querySelector('.ticket-color')
+   ticketColorBand.addEventListener('click', function(){
+   let currColor =  ticketColorBand.style.backgroundColor // lightgreen
+   
+   let currColorIndex = colors.findIndex(function (color){
+    return color === currColor
+   })
+
+   currColorIndex++
+
+   let newColorIndex = currColorIndex % colors.length
+   let newColor = colors[newColorIndex]
+   console.log(newColor)
+
+   ticketColorBand.style.backgroundColor = newColor
+
+
+
+      
+   })
+}
