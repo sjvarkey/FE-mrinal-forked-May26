@@ -1,26 +1,21 @@
-console.log('Start')
+console.log("Start");
 
-function test(){
-    console.log('i am the test function')
+function test() {
+  console.log("i am the test function");
 }
-function sayHello(){
-    for(let i=0 ; i<10000000000 ; i++){
+function sayHello() {
+  console.log("Hello");
+} // 7-8
 
-    }
-    console.log('Hello')
-} // 7-8 
-function sayBye(){
-    console.log('Bye')
+function sayBye() {
+  console.log("Bye");
 }
 
-
-
-
-test()
+test();
 // sayHello() synschronously
-setTimeout(sayHello ,0) // asynchronously
-sayBye()
+setTimeout(sayHello, 2000); // asynchronously
+setTimeout(sayBye, 3000);
 
-console.log('End')
+sayBye();
 
-
+console.log("End");
