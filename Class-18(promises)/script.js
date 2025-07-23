@@ -14,19 +14,14 @@ let promise1 = new Promise(function (resolve, reject) {
 
 // promise handling
 
+promise1.then(function (output) {
+  console.log(output);
+}); // works with resolve method
 
-promise1.then(function(output){
-  console.log(output)
-}) // works with resolve method
+promise1.catch(function (failedOutput) {
+  console.log(failedOutput);
+}); // works with reject method
 
-promise1.catch(function(failedOutput){
-    console.log(failedOutput)
-}) // works with reject method
-
-promise1.finally(function(){
-    console.log('Promise Settled')
-})
-
-
-
-
+promise1.finally(function () {
+  console.log("Promise Settled");
+});
