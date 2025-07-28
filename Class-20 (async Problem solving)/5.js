@@ -18,3 +18,7 @@
 // 3️⃣ If the third API returns a fact, 
 //display the number of astronauts in space as "👨‍🚀 
 //There are currently [number] astronauts in space!".
+
+// https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY"
+//https://api.spacexdata.com/v4/company
+//http://api.open-notify.org/astros.json
