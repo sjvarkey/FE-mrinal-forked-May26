@@ -1,30 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-
+  </head>
+  <body>
     <div>
-        <input type="text" id="new-task" placeholder="Add task" />
-        <button id="add-btn">Add</button>
-      </div>
-      
-      <ul id="todo-list">
-        <!-- List items will appear here -->
-      </ul>
-    
-</body>
+      <input type="text" id="new-task" placeholder="Add task" />
+      <button id="add-btn">Add</button>
+    </div>
 
-<script>
+    <ul id="todo-list">
+      <!-- List items will appear here -->
+
+    </ul>
+  </body>
+
+  <script>
+    const todoList = document.getElementById("todo-list");
+    const addBtn = document.getElementById("add-btn");
+    const newTaskInput = document.getElementById("new-task");
+
+    addBtn.addEventListener("click", function () {
+      const taskText = newTaskInput.value;
+
+      const li = document.createElement("li");
+
+      li.innerHTML = ` <input type="checkbox" class="done-checkbox" />
+    <span class="task-text">${taskText}</span>
+    <button class="delete-btn">Delete</button>
+    `;
+
+      todoList.appendChild(li);
+      newTaskInput.value = "";
+    });
+
+    todoList.addEventListener("click", function (e) {
+      // line through task
+     // apply on your own
 
 
 
-// Add new task dynamically
-
-
-
-</script>
+      // delete task
+      if (e.target.classList.contains("delete-btn")) {
+        const listItem = e.target.closest("li");
+        listItem.remove();
+      }
+    });
+  </script>
 </html>
