@@ -46,7 +46,7 @@ commentContainer.addEventListener('click' , function(e){
     }
 
     if(submitBtnCliked===true){
-        const commentClosest = e.target.closest('.comment-reply-section')
+        let commentClosest = e.target.closest('.comment-reply-section')
 
         closestCard.appendChild(addReply(commentClosest.children[0].value))
         commentClosest.remove() 
