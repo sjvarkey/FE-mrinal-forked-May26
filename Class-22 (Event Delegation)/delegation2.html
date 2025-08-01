@@ -13,7 +13,6 @@
 
     <ul id="todo-list">
       <!-- List items will appear here -->
-
     </ul>
   </body>
 
@@ -38,12 +37,11 @@
 
     todoList.addEventListener("click", function (e) {
       // line through task
-     // apply on your own
-
-
+      // apply on your own
 
       // delete task
       if (e.target.classList.contains("delete-btn")) {
+        console.log(e.target);
         const listItem = e.target.closest("li");
         listItem.remove();
       }
