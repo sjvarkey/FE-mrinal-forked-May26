@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Throttling</title>
+  </head>
+  <body>
+    <button id="clickMe">Click Me</button>
+  </body>
+
+  <script>
+    let button = document.getElementById("clickMe");
+
+    // button.addEventListener("click", getData);
+
+    function getData() {
+      console.log("data fetched");
+    }
+
+    function throttle(fn, delay) {
+      let canRun = true; //for the first call
+
+      return function () {
+        if (canRun === true) {
+          fn();
+          canRun = false; // locking the fun call
+
+          setTimeout(function () {
+            canRun = true; // unloack
+          }, delay);
+        }
+      };
+    }
+
+    const throttleClick = throttle(getData, 2000);
+    button.addEventListener("click", throttleClick);
+  </script>
+</html>

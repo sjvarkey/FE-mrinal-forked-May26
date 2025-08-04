@@ -23,22 +23,23 @@
 
     function debounce(func, wait) {
       let timeout;
-      console.log(timeout)
+      console.log(timeout);
 
       return function executedFunction() {
-        // if the timer has crosses the x duration the we call the function
         const later = function () {
-       
-          clearTimeout(timeout); // 2 sec will be cleared
-          func(); // processInput
+          
+          clearTimeout(timeout);
+          console.log(timeout)
+          func();
         };
         clearTimeout(timeout);
-        timeout = setTimeout(later, wait); // 2 sec
-    
+        
+        timeout = setTimeout(later, wait);
+        console.log(timeout)
       };
     }
 
-    const debouncedProcessInput = debounce(processInput, 2000);
+    const debouncedProcessInput = debounce(processInput, 300);
 
     inputField.addEventListener("keydown", debouncedProcessInput);
   </script>
