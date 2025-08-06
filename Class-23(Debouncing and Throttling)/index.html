@@ -22,7 +22,7 @@
     // Optimized code with Debouncing
 
     function debounce(func, wait) {
-      let timeout;
+      let timeout; // undefined
       console.log(timeout);
 
       return function executedFunction() {
@@ -39,7 +39,7 @@
       };
     }
 
-    const debouncedProcessInput = debounce(processInput, 300);
+    const debouncedProcessInput = debounce(processInput, 3000);
 
     inputField.addEventListener("keydown", debouncedProcessInput);
   </script>
