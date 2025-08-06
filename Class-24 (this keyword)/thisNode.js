@@ -22,6 +22,8 @@ var obj = {
 
  obj.fn()
 
+ 
+// 4th 
 var obj2 = {
   name: "Adam",
   age: 26,
