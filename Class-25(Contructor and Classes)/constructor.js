@@ -20,8 +20,9 @@ function Pizza(toppingsPara, sizePara, crustTypePara) {
 
 let order1 = new Pizza(["cheese", "pepperoni"], "medium", "thin");
 let order2 = new Pizza(["tomatoes", "Onion"], "large" , 'thick');
-// console.log(order1);
-// console.log(order2);
+let order3 = new Pizza(["Bell peppers", "Zuccini"], "small" , 'thin');
 
-order1.describe()
-order2.describe()
+
+console.log(order1)
+console.log(order2)
+console.log(order3)
