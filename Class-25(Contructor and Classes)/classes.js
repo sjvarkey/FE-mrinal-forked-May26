@@ -1,9 +1,16 @@
 class Pizza {
+  static totalPizza = 0 // static property to keep count
+
   constructor(toppingsPara, sizePara, crustTypePara) {
     this.toppings = toppingsPara;
     this.size = sizePara;
     this.crustType = crustTypePara;
+    Pizza.totalPizza++
   }
+
+  static printTotalPizzas(){
+    console.log(`Total Pizza ${Pizza.totalPizza}`)
+  } 
 
   describe() {
     return(
@@ -50,4 +57,7 @@ console.log(order4);
 order1.describe();
 order2.describe();
 order3.describe();
-order4.describe()
+// order4.describe()
+
+Pizza.printTotalPizzas()
+order1.printTotalPizzas()
