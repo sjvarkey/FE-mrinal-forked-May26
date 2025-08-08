@@ -1,6 +1,6 @@
 // 1. this in global
 
-// console.log(this)
+// console.log(this) // empty object
 
 // 2. this in function
 
@@ -20,9 +20,9 @@ var obj = {
     }
 }
 
- obj.fn()
+ obj.fn() // object itslef
 
- 
+
 // 4th 
 var obj2 = {
   name: "Adam",
@@ -40,4 +40,4 @@ let fn2 = obj2.fn(); // nestedFn
 
 console.log(fn2);
 
-fn2();
+fn2(); // global object
