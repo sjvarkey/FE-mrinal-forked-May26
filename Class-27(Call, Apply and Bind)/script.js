@@ -14,9 +14,12 @@ let person1 = {
 let person2 = {
   name: "John",
   age: 25,
+  
 };
 
-person1.printName(); 
+
+
+// person1.printName(); 
 // i am Jhon - > this-Person1   person1.name
 
 // call method
