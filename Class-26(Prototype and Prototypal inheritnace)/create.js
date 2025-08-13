@@ -10,6 +10,8 @@ let personPrototype= {
 }
 
 
+
+
 let car1 = Object.create(carPrototype)
 car1.model = 'Toyota'
 car1.year = 2021
