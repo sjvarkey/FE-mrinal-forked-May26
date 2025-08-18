@@ -13,13 +13,17 @@ let obj = {
 //   return num * num * num;
 // });
 
-// let sqredArr2 = nums.map(function (num) {
-//   return num * num * num;
-// });
+let sqredArr2 = nums.map(function (num) {
+  return num * num * num;
+});
 
-// console.log(sqredArr)
+console.log(sqredArr2)
 
 Array.prototype.myMap = function (callback) {
+  if (this == null || this==undefined) {
+    throw new TypeError("Array.prototype.myMap called on null or undefined");
+  }
+
   if (typeof callback !== "function") {
     throw new TypeError(callback + " is not a function");
   }
@@ -44,3 +48,9 @@ let myMapArraySquared = nums.myMap(function (num) {
 });
 
 console.log(myMapArraySquared);
+
+let a = function(){
+    console.log("hello")
+}
+
+console.log(typeof a)
