@@ -7,24 +7,26 @@
 //   checkThis();
 
 
-const user = {
-    name: "Alice",
-    greet: function () {
-      setTimeout(function () {
-        console.log(this.name);
-      }, 1000);
-    }
-  };
+// const user = {
+//     name: "Alice",
+//     greet: function () {
+//       setTimeout(function () {
+//         console.log(this.name);
+//       }, 1000);
+//     }
+//   };
   
-  user.greet();
+//   user.greet();
 
-
+// 4
   const counter = {
     count: 0,
-    start: function () {
-      setInterval(function () {
-        this.count++;
-        console.log(this.count); // 1
-      }, 1000);
-    }
+  start: function () {
+  setInterval(() => {
+    this.count++;
+    console.log(this.count);
+  }, 1000);
+}
   };
+
+  counter.start()
