@@ -61,3 +61,12 @@ Promise.allSettled([fetchUserData(), fetchUserPosts() , fetchUserComments()])
     console.error("An error occurred:", error);
   });
 
+//  ✅ Promise.all → When all results are mandatory. 
+// (e.g., payment transaction requires user, 
+// account, and bank API all to succeed)
+
+// ✅ Promise.allSettled → 
+// When partial results are acceptable. 
+// (e.g., news feeds, weather data from multiple APIs, 
+// product price comparisons)
+
