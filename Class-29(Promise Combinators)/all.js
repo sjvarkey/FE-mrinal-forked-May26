@@ -13,7 +13,7 @@ function fetchUserPosts(data) {
 function fetchUserComments() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      let success = Math.random() > 1; // 50% chance of failure
+      let success = Math.random() > 0; // 50% chance of failure
       if (success) {
         resolve(["Nice!", "Interesting post", "Subscribed!"]);
       } else {
@@ -50,16 +50,16 @@ Promise.all([fetchUserData(), fetchUserPosts() , fetchUserComments()])
   });
 
 
-Promise.allSettled([fetchUserData(), fetchUserPosts() , fetchUserComments()])
-  .then(function (results) {
-    console.log(results);
-    console.log(results[0]);
-    console.log(results[1]);
-    console.log(results[2])
-  })
-  .catch((error) => {
-    console.error("An error occurred:", error);
-  });
+// Promise.allSettled([fetchUserData(), fetchUserPosts() , fetchUserComments()])
+//   .then(function (results) {
+//     console.log(results);
+//     console.log(results[0]);
+//     console.log(results[1]);
+//     console.log(results[2])
+//   })
+//   .catch((error) => {
+//     console.error("An error occurred:", error);
+//   });
 
 //  ✅ Promise.all → When all results are mandatory. 
 // (e.g., payment transaction requires user, 
