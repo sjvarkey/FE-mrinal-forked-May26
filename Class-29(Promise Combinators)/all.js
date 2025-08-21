@@ -10,6 +10,21 @@ function fetchUserPosts(data) {
   });
 }
 
+function fetchUserComments() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      let success = Math.random() > 1; // 50% chance of failure
+      if (success) {
+        resolve(["Nice!", "Interesting post", "Subscribed!"]);
+      } else {
+        reject("Failed to fetch comments ❌");
+      }
+    }, 800);
+  });
+}
+
+
+
 // fetchUserData().then((data)=>{
 //     console.log(data)
 //     return fetchUserPosts()
@@ -23,12 +38,26 @@ function fetchUserPosts(data) {
 
 // Promise.all. ['result1' , 'result2' ]
 
-Promise.all([fetchUserData(), fetchUserPosts()])
+Promise.all([fetchUserData(), fetchUserPosts() , fetchUserComments()])
   .then(function (results) {
     console.log(results);
     console.log(results[0]);
     console.log(results[1]);
+    console.log(results[2])
   })
   .catch((error) => {
     console.error("An error occurred:", error);
   });
+
+
+Promise.allSettled([fetchUserData(), fetchUserPosts() , fetchUserComments()])
+  .then(function (results) {
+    console.log(results);
+    console.log(results[0]);
+    console.log(results[1]);
+    console.log(results[2])
+  })
+  .catch((error) => {
+    console.error("An error occurred:", error);
+  });
+
