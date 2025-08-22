@@ -64,3 +64,10 @@ let obj = {
 
 let has = obj.hasOwnProperty('phone')
 console.log(has)
+
+
+let arr = [1 ,2 ,3 ,4]
+console.log(typeof arr)
+
+let isArray = Array.isArray(zoo1)
+console.log(isArray)
