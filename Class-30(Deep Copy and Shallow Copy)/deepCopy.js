@@ -18,23 +18,34 @@ let zoo1 = {
       food: "Fruits and Honey",
     },
   ],
+
+ 
 };
 
 // Json.strinfy and parse
 
-let zooJsonString = JSON.stringify(zoo1)
+// let zooJsonString = JSON.stringify(zoo1)
+// console.log(zooJsonString)
 
-let zoo2 = JSON.parse(zooJsonString)
+// let zoo2 = JSON.parse(zooJsonString)
 
-zoo2.name = 'Brazil Zoo'
-zoo2.location = 'Brazil'
-zoo2.animals[2].species='Zebra'
-zoo2.animals[2].food='Grass and Leaves'
+// zoo2.name = 'Brazil Zoo'
+// zoo2.location = 'Brazil'
+// zoo2.animals[2].species='Zebra'
+// zoo2.animals[2].food='Grass and Leaves'
 
-console.log(zoo1)
-console.log(zoo2)
+// console.log(zoo1)
+// console.log(zoo2)
 
 // structredClone
+
+
+
+let zooCopy = structuredClone(zoo1)
+console.log(zooCopy)
+
+
+
 
 
 
