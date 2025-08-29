@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script>
+    //    Make Hello visible inside the root div
+
+    //    const headingElement = document.createElement('h1')
+    //    headingElement.innerText = 'Hello from JS'
+
+    //    const root = document.getElementById('root')
+    //    root.appendChild(headingElement)
+
+    // With using React
+
+    const root = document.getElementById("root");
+
+    const headingElement = React.createElement(
+      "h1",
+      { class: "heading", style: { color: "red" } },
+      "Hello from React"
+    );
+
+    ReactDOM.render(headingElement, root);
+  </script>
+</html>
