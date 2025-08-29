@@ -12,11 +12,12 @@
       crossorigin
       src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
     ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   </head>
   <body>
     <div id="root"></div>
   </body>
-  <script>
+  <script type="text/babel">
     //    Make Hello visible inside the root div
 
     //    const headingElement = document.createElement('h1')
@@ -27,14 +28,33 @@
 
     // With using React
 
-    const root = document.getElementById("root");
+    // const root = document.getElementById("root");
 
-    const headingElement = React.createElement(
-      "h1",
-      { class: "heading", style: { color: "red" } },
-      "Hello from React"
-    );
+    // const headingElement = React.createElement(
+    //   "div",
+    //   { class: "heading", style: { color: "red" } },
+    //   React.createElement(
+    //     "div",
+    //     {},
+    //     React.createElement("h1", {}, "Hello from React")
+    //   )
+    // );
 
-    ReactDOM.render(headingElement, root);
+    // ReactDOM.render(headingElement, root);
+
+    // Using Jsx to write React Code
+    // Functional Components
+
+    function App() {
+      return (
+        <div >
+          <div>
+            <h1 style={{color : 'red'}}> Hello from JSX </h1>
+          </div>
+        </div>
+      );
+    }
+
+    ReactDOM.render(<App />, document.getElementById("root"));
   </script>
 </html>
