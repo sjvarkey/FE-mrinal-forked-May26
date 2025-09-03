@@ -28,7 +28,7 @@ function UserCard() {
         {User.name.first} {User.name.last}
       </h2>
 
-      <h2>Email: {User.email}</h2>
+      {showEmail && <h2>{User.email}</h2>}
       <p>
         Age : {User.dob.age} ({User.dob.age >= 18 ? "Adult" : "Minor"})
       </p>
