@@ -6,7 +6,9 @@ function Form() {
   const [password, setPassword] = useState("");
   const [userName, setUserName] = useState("");
 
-  function handleSignUp(){
+  function handleSignUp(e){
+    e.preventDefault()
+
      console.log({
       name,
       userName,
