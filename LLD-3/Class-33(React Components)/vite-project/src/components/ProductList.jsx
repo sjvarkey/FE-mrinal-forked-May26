@@ -14,6 +14,7 @@ const Products = [
 ];
 
 function ProductList() {
+  console.log('ProductList Rendered');
   return (
     <div style={{ maxWidth: "400px", margin: "auto", textAlign: "center" }}>
       <ul>

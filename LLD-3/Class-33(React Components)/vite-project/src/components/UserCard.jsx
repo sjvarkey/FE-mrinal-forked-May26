@@ -25,7 +25,7 @@ function UserCard() {
       <img style={{ borderRadius: "50%" }} src={User.picture.large} />
 
       <h2>
-        {User.name.first} {User.name.last}
+        {`{${User.name.first}}`} {User.name.last}
       </h2>
 
       {showEmail && <h2>{User.email}</h2>}

@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import ProductList from "./ProductList";
 
 function Counter() {
   const [count, setCount] = useState(0);
@@ -7,7 +8,7 @@ function Counter() {
   function increment() {
     setCount(count + 1);
   }
-
+  console.log('Counter Rendered');
   function decrement() {
     if (count > 0) {
       setCount(count - 1);
@@ -19,6 +20,7 @@ function Counter() {
   }
 
   return (
+    <div>
     <div className="counter">
       <button onClick={decrement} className="btn decrement">
         Decrement
@@ -31,6 +33,10 @@ function Counter() {
       <button onClick={reset} className="btn reset">
         Reset
       </button>
+
+     
+    </div>
+    
     </div>
   );
 }
