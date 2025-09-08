@@ -21,9 +21,10 @@ function Counter() {
   }
 
   useEffect(() => {
+
     console.log("use Effect Runs");
     document.title = `You clicked ${count} times`;
-  } , []);
+  } );
 
   return (
     <div>
@@ -47,6 +48,11 @@ function Counter() {
           onChange={(e) => setName(e.target.value)}
         />
         <p>{name}</p>
+
+
+
+
+        
       </div>
     </div>
   );
