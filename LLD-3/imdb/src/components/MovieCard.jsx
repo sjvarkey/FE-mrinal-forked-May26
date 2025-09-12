@@ -1,6 +1,6 @@
 import React from "react";
 
-function MovieCard() {
+function MovieCard({movieTitle}) {
   return (
     <div>
  
@@ -10,7 +10,9 @@ function MovieCard() {
           style={{
             backgroundImage: `url(https://fastly.picsum.photos/id/10/2500/1667.jpg?hmac=J04WWC_ebchx3WwzbM-Z4_KC_LeLBWr5LZMaAkWkF68)`,
           }}
-        ></div>
+        >
+            {movieTitle}
+        </div>
       </div>
     </div>
   );
