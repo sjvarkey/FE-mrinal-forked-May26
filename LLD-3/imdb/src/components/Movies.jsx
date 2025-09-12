@@ -1,9 +1,10 @@
 import React from 'react'
+import Banner from './Banner'
 
 function Movies() {
   return (
     <div>
-        <h1>MOvies Page</h1>
+        <Banner/>
     </div>
   )
 }
