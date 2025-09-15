@@ -14,7 +14,7 @@ function Banner() {
       {/* Content */}
       <div className="relative z-10 px-10 max-w-3xl">
         <h1 className="text-4xl md:text-6xl font-bold text-white drop-shadow-lg">
-          Movie Title Goes Here
+          X-Men:Apocalypse
         </h1>
         <p className="text-gray-300 mt-4 text-lg md:text-xl">
           A short description of the movie goes here. Keep it engaging and concise 
