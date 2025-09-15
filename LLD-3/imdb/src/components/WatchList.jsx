@@ -2,6 +2,17 @@ import React from "react";
 
 function WatchList() {
   return (
+    <div>
+
+    {/* Search Bar */}
+
+    <div className="flex justify-center my-10">
+      <input placeholder="Search Movies" className="h-[3rem] w-[18rem] bg-gray-200 px-4 outline-none border border-slate-600" type="text"/>
+    </div>
+
+
+
+    {/* This is the watchlist table */}
     <div className="m-8">
       <div className="overflow-x-auto shadow-md rounded-lg">
         <table className="w-full border-collapse">
@@ -78,6 +89,7 @@ function WatchList() {
           </tbody>
         </table>
       </div>
+    </div>
     </div>
   );
 }
