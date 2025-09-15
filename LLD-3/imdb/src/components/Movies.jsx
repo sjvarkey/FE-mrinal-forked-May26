@@ -11,9 +11,13 @@ import Pagination from "./Pagination";
 function Movies() {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
+  const [maxPage , setMaxPage] = useState(null)
 
   function pageNext() {
+    if(page<maxPage){
     setPage(page + 1);
+    }
+    
   }
 
   function pagePrevious() {
@@ -29,6 +33,7 @@ function Movies() {
       );
 
       setMovies(response.data.results);
+      setMaxPage(response.data.total_pages)
     }
 
     fetchMovies();
