@@ -1,8 +1,10 @@
-import React from "react";
+import React, { use, useState } from "react";
 import { genreids } from "../utlities";
 
 
 function WatchList({ watchList }) {
+  const [search , setSearch] = useState('')
+  console.log(search)
   return (
     <div>
       {/* Search Bar */}
@@ -12,6 +14,8 @@ function WatchList({ watchList }) {
           placeholder="Search Movies"
           className="h-[3rem] w-[18rem] bg-gray-200 px-4 outline-none border border-slate-600"
           type="text"
+          value={search}
+          onChange={(e)=>setSearch(e.target.value)}
         />
       </div>
 
@@ -33,7 +37,9 @@ function WatchList({ watchList }) {
 
             {/* Table Body */}
             <tbody className="divide-y divide-gray-200 text-gray-800">
-              {watchList.map((movie) => (
+              {watchList.filter((movie)=>(
+                movie.title.toLowerCase().includes(search.toLowerCase())
+              )).map((movie) => (
                 <tr className="hover:bg-gray-50 transition">
                   <td className="px-6 py-4">
                     <img
