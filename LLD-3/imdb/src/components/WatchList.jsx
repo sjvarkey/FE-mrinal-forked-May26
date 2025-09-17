@@ -49,43 +49,7 @@ function WatchList() {
               </td>
             </tr>
 
-            <tr className="hover:bg-gray-50 transition">
-              <td className="px-6 py-4">
-                <img
-                  className="h-24 w-40 rounded-md object-fit shadow"
-                  src={`https://image.tmdb.org/t/p/original/1E5baAaEse26fej7uHcjOgEE2t2.jpg`}
-                  alt="poster"
-                />
-              </td>
-              <td className="px-6 py-4 font-medium">Fast and the Furious</td>
-              <td className="px-6 py-4 text-center">7.8</td>
-              <td className="px-6 py-4 text-center">141</td>
-              <td className="px-6 py-4 text-center">Action</td>
-              <td className="px-6 py-4 text-center">
-                <button className="text-red-600 font-semibold hover:text-red-800 transition">
-                  Delete
-                </button>
-              </td>
-            </tr>
-
-            <tr className="hover:bg-gray-50 transition">
-              <td className="px-6 py-4">
-                <img
-                  className="h-24 w-40 rounded-md object-fit shadow"
-                  src={`https://image.tmdb.org/t/p/original/1E5baAaEse26fej7uHcjOgEE2t2.jpg`}
-                  alt="poster"
-                />
-              </td>
-              <td className="px-6 py-4 font-medium">Fast and the Furious</td>
-              <td className="px-6 py-4 text-center">7.8</td>
-              <td className="px-6 py-4 text-center">141</td>
-              <td className="px-6 py-4 text-center">Action</td>
-              <td className="px-6 py-4 text-center">
-                <button className="text-red-600 font-semibold hover:text-red-800 transition">
-                  Delete
-                </button>
-              </td>
-            </tr>
+           
           </tbody>
         </table>
       </div>

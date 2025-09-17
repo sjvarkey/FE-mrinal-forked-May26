@@ -8,7 +8,7 @@ import Pagination from "./Pagination";
 
 // https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1
 
-function Movies() {
+function Movies({handleAddtoWatchList}) {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
   const [maxPage , setMaxPage] = useState(null)
@@ -51,8 +51,8 @@ function Movies() {
         {movies &&
           movies.map((movie) => (
             <MovieCard
-              movieTitle={movie.title}
-              posterPath={movie.poster_path}
+              movieObj={movie}
+              handleAddToWatchList={handleAddtoWatchList}
             />
           ))}
       </div>
