@@ -1,4 +1,6 @@
 import React from "react";
+import { genreids } from "../utlities";
+
 
 function WatchList({ watchList }) {
   return (
@@ -45,7 +47,7 @@ function WatchList({ watchList }) {
                   </td>
                   <td className="px-6 py-4 text-center">{movie.vote_average}</td>
                   <td className="px-6 py-4 text-center">{movie.popularity}</td>
-                  <td className="px-6 py-4 text-center">Action</td>
+                  <td className="px-6 py-4 text-center">{genreids[movie.genre_ids[0]]}</td>
                   <td className="px-6 py-4 text-center">
                     <button className="text-red-600 font-semibold hover:text-red-800 transition">
                       Delete
