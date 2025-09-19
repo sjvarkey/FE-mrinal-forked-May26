@@ -1,5 +1,7 @@
 import Parent1 from "./components/Parent1";
 import './App.css'
+import { ParkContext } from "./components/ParkContext";
+
 
 function App() {
   const parkInfo = {
@@ -23,7 +25,9 @@ function App() {
   };
   return (
     <>
-      <Parent1 merryTicket={parkInfo.ticketForMerryGoRound} rollerTicket={parkInfo.ticketForRollerCoaster} rule1={parkInfo.rollerCoaster} rule2={parkInfo.merryGoRound} />
+      <ParkContext.Provider value={parkInfo} >
+        <Parent1 />
+      </ParkContext.Provider>
     </>
   );
 }

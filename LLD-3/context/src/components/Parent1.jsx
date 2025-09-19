@@ -1,19 +1,21 @@
-import React from 'react'
-import Child1 from './Child1'
-import Child2 from './Child2'
+import React, { useContext } from "react";
+import Child1 from "./Child1";
+import Child2 from "./Child2";
+import { ParkContext } from "./ParkContext";
 
-
-
-
-function Parent1({rule1 , rule2 , rollerTicket , merryTicket}) {
+function Parent1() {
+  const data = useContext(ParkContext);
 
   return (
     <>
-    <div className='parent'>Parent1 RollerCoaster: {rule1} MerryGoRound: {rule2}</div>
-       <Child1 rollerTicket={rollerTicket}  />
-       <Child2 merryTicket={merryTicket} />
+      <div className="parent">
+        Parent1 RollerCoaster:{data.rollerCoaster} MerryGoRound:
+        {data.merryGoRound}
+      </div>
+      <Child1 />
+      <Child2 />
     </>
-  )
+  );
 }
 
-export default Parent1
+export default Parent1;
