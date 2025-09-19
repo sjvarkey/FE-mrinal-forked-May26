@@ -1,3 +1,6 @@
+import Parent1 from "./components/Parent1";
+import './App.css'
+
 function App() {
   const parkInfo = {
     parkName: "Imagica Amusement park",
@@ -20,7 +23,7 @@ function App() {
   };
   return (
     <>
-      <h1>Context API </h1>
+      <Parent1 merryTicket={parkInfo.ticketForMerryGoRound} rollerTicket={parkInfo.ticketForRollerCoaster} rule1={parkInfo.rollerCoaster} rule2={parkInfo.merryGoRound} />
     </>
   );
 }
