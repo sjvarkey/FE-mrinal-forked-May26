@@ -1,8 +1,10 @@
-import React, { use, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { genreids } from "../utlities";
 
 function WatchList({ watchList, setWatchList }) {
   const [search, setSearch] = useState("");
+  const [genreList , setGenreList] = useState([])
+
   console.log(search);
 
   function handleAscending() {
@@ -20,6 +22,19 @@ function WatchList({ watchList, setWatchList }) {
 
     setWatchList([...sortDescending]);
   }
+
+
+  useEffect(()=>{
+     let temp =  watchList.map((movieObj)=>{
+        return genreids[movieObj.genre_ids[0]]
+      })
+
+     const uniqueGenres =  new Set(temp)
+     console.log(uniqueGenres)
+     const genres = ["All Genres", ...uniqueGenres]
+     console.log(genres)
+     setGenreList[genres]
+  }, [watchList])
 
   return (
     <div>
