@@ -3,7 +3,7 @@ import { genreids } from "../utlities";
 
 function WatchList({ watchList, setWatchList }) {
   const [search, setSearch] = useState("");
-  const [genreList , setGenreList] = useState([])
+  const [genreList, setGenreList] = useState([]);
 
   console.log(search);
 
@@ -23,18 +23,17 @@ function WatchList({ watchList, setWatchList }) {
     setWatchList([...sortDescending]);
   }
 
+  useEffect(() => {
+    let temp = watchList.map((movieObj) => {
+      return genreids[movieObj.genre_ids[0]];
+    });
 
-  useEffect(()=>{
-     let temp =  watchList.map((movieObj)=>{
-        return genreids[movieObj.genre_ids[0]]
-      })
+    const uniqueGenres = new Set(temp);
 
-     const uniqueGenres =  new Set(temp)
-     console.log(uniqueGenres)
-     const genres = ["All Genres", ...uniqueGenres]
-     console.log(genres)
-     setGenreList[genres]
-  }, [watchList])
+    const genres = ["All Genres", ...uniqueGenres];
+
+    setGenreList[genres];
+  }, [watchList]);
 
   return (
     <div>
@@ -64,7 +63,11 @@ function WatchList({ watchList, setWatchList }) {
                     onClick={handleAscending}
                     className="fa-solid fa-arrow-up m-2"
                   ></i>
-                  Ratings <i onClick={handleDescending} className="fa-solid fa-arrow-down m-2"></i>
+                  Ratings{" "}
+                  <i
+                    onClick={handleDescending}
+                    className="fa-solid fa-arrow-down m-2"
+                  ></i>
                 </th>
                 <th className="px-6 py-3">Popularity</th>
                 <th className="px-6 py-3">Genre</th>
