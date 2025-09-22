@@ -1,6 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { decrement, increment, reset } from "../reduxConfig/counterSlice";
+
+
 
 
 
@@ -11,16 +14,16 @@ function Counter() {
   
 
   const handleIncrement = () => {
-      dispatch()
+      dispatch(increment())
   };
 
   const handleDecrement = () => {
-    dispatch()
+    dispatch(decrement())
  
   };
 
   const reset= ()=>{
-    dispatch()
+    dispatch(reset())
   }
   return (
     <>
