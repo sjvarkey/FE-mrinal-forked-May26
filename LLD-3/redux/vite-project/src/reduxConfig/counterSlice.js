@@ -5,22 +5,23 @@ const counterSlice = createSlice({
   initialState: {
     count: 0,
   },
-
   reducers: {
     increment: (state) => {
-      state.count = count + 1;
+      state.count = state.count + 1;
     },
-
     decrement: (state) => {
-      if (count >= 1) {
-        state.count = count - 1;
+      if (state.count >= 1) {
+        state.count = state.count - 1;
       }
     },
-
     reset: (state) => {
       state.count = 0;
     },
   },
 });
 
-export default counterSlice
+// ✅ Export actions
+export const { increment, decrement, reset } = counterSlice.actions;
+
+// ✅ Export reducer
+export default counterSlice.reducer;
