@@ -3,8 +3,10 @@ Context Api -
 
 
  Social Media  -> 
- Profile - userData? Yes , Feed - Yes , posts , likes , comments , reels , stories , 
- Chat - userData
+ Profile - userData -> userName , Posts , followers , following
+ 
+ Yes , Feed - Yes , posts , likes , comments , reels , stories , 
+ Chat - userData -> userName , senderId , recieverId
 
 
  State Manangement
@@ -18,3 +20,27 @@ Context Api -
 
 
  Zomato
+
+
+ Analogy of a SuperMarket
+
+
+Store -> Manager , Customer
+Kithen Space  - Slice - state
+Clothes Space - Slice
+Groceries - Slice
+Electronics - Slice - Electironis- State()
+Footwear - Slice - Footwear ->  state(20) - Customer buys 1 shoe
+Footwear - state(19) - Customer1 - 1
+Footwear - state(19) - Customer2 - 1
+Footwear - state(19) - Customer3 - 4
+Footwear - state(19) - Customer4 - 2
+Footwear - state(19) - Customer5 - 6
+state(6) - Manager
+Footwear - state(update the state by 14)
+state(20)
+
+state updation - funcitons - Reducers
+
+dispatch and actions
+
