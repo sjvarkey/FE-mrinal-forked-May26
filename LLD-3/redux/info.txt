@@ -1,0 +1,20 @@
+Context Api - 
+ To avoid Prop Drilling  we use Context Api
+
+
+ Social Media  -> 
+ Profile - userData? Yes , Feed - Yes , posts , likes , comments , reels , stories , 
+ Chat - userData
+
+
+ State Manangement
+
+
+ E-Commerce
+ Products - Add a Product+1, Cart 
+
+
+ BookMyShow
+
+
+ Zomato
