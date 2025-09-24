@@ -4,6 +4,8 @@ import Movies from "./components/Movies";
 import WatchList from "./components/WatchList";
 import { useEffect, useState } from "react";
 import { MovieContext } from "./components/MovieContext";
+import MoodSelector from "./components/MoodSelector";
+
 
 
 function App() {
@@ -36,6 +38,8 @@ function App() {
               element={<Movies  />}
             />
             <Route path="/watchlist" element={<WatchList/> } />
+            <Route path="/mood" element={<MoodSelector/> } />
+
           </Routes>
         </BrowserRouter>
       </div>

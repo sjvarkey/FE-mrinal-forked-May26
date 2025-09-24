@@ -1,0 +1,9 @@
+Agenda - AI-Powered App Development
+Starting at 9:10 Sharp!
+
+1. Mood Based Recommendation
+Dark/Light Theme Toggle
+Movie Trailers
+
+
+Gemini API_key = AIzaSyCjV4RlOTjdeNi1Woj4XmWVg9W-SCVVd5s
