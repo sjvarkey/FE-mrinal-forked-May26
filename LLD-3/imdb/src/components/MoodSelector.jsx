@@ -1,126 +1,183 @@
-// src/components/MoodSelector.jsx
-
 import React, { useState } from 'react';
-import { moods, timePreferences } from '../utlity/moods.js';
+import { getMoodBasedRecommendations } from '../config/gemini.js';
+import { moods } from '../utlity/moods.js';
 
-const MoodSelector = ({ onMoodSelect, loading }) => {
+const MoodSelector = () => {
   const [selectedMood, setSelectedMood] = useState(null);
-  const [selectedTime, setSelectedTime] = useState('any');
-  const [customInput, setCustomInput] = useState('');
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  const handleMoodSelect = (mood) => {
+  const handleMoodClick = async (mood) => {
     setSelectedMood(mood);
+    console.log(mood)
+    setLoading(true);
+    setError(null);
+    setMovies([]);
+
+    try {
+      const result = await getMoodBasedRecommendations(mood);
+      setMovies(result.recommendations || []);
+    } catch (err) {
+      setError('Failed to get recommendations. Please try again.');
+      console.error('Error:', err);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleGetRecommendations = () => {
-    if (!selectedMood) return;
-
-    const timePreference = timePreferences.find(t => t.id === selectedTime);
-    
-    onMoodSelect({
-      mood: selectedMood,
-      timePreference: timePreference,
-      customInput: customInput.trim()
-    });
+  const resetMood = () => {
+    setSelectedMood(null);
+    setMovies([]);
+    setError(null);
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-gray-800 mb-2">
-          How are you feeling today?
-        </h2>
-        <p className="text-gray-600">
-          Tell us your mood and we'll find the perfect movie for you
-        </p>
-      </div>
-
-      {/* Mood Selection */}
-      <div className="mb-8">
-        <h3 className="text-xl font-semibold mb-4 text-gray-700">Choose your mood:</h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {moods.map((mood) => (
-            <div
-              key={mood.id}
-              onClick={() => handleMoodSelect(mood)}
-              className={`
-                p-4 rounded-lg cursor-pointer transition-all duration-200 border-2
-                ${selectedMood?.id === mood.id 
-                  ? `${mood.color} border-gray-800 shadow-lg transform scale-105` 
-                  : 'bg-gray-100 border-gray-300 hover:bg-gray-200'
-                }
-              `}
-            >
-              <div className="text-center">
-                <div className="text-3xl mb-2">{mood.emoji}</div>
-                <div className="font-semibold text-sm">{mood.name}</div>
-                <div className="text-xs text-gray-600 mt-1">{mood.description}</div>
-              </div>
-            </div>
-          ))}
+    <div className="min-h-screen bg-gray-50 py-8">
+      <div className="max-w-6xl mx-auto px-4">
+        
+        {/* Header */}
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold text-gray-800 mb-2">
+            🎭 Mood-Based Movies
+          </h1>
+          <p className="text-gray-600 text-lg">
+            Choose your mood and discover perfect movies
+          </p>
         </div>
-      </div>
 
-      {/* Time Preference */}
-      {selectedMood && (
-        <div className="mb-6">
-          <h3 className="text-xl font-semibold mb-4 text-gray-700">How much time do you have?</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {timePreferences.map((time) => (
+        {/* Mood Selection */}
+        <div className="mb-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {moods.map((mood) => (
               <button
-                key={time.id}
-                onClick={() => setSelectedTime(time.id)}
+                key={mood.id}
+                onClick={() => handleMoodClick(mood)}
+                disabled={loading}
                 className={`
-                  p-3 rounded-lg border transition-all duration-200
-                  ${selectedTime === time.id 
-                    ? 'bg-blue-500 text-white border-blue-600' 
-                    : 'bg-white border-gray-300 hover:bg-gray-50'
+                  p-6 rounded-lg transition-all duration-200 border-2 text-center
+                  ${selectedMood?.id === mood.id 
+                    ? `${mood.color} border-gray-800 shadow-lg text-white` 
+                    : 'bg-white border-gray-300 hover:bg-gray-50 hover:shadow-md hover:border-gray-400'
                   }
+                  ${loading ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}
                 `}
               >
-                <div className="text-lg">{time.emoji}</div>
-                <div className="text-sm font-medium">{time.name}</div>
+                <div className="text-4xl mb-3">{mood.emoji}</div>
+                <div className="font-semibold mb-2">{mood.name}</div>
+                <div className="text-sm opacity-90">{mood.description}</div>
               </button>
             ))}
           </div>
         </div>
-      )}
 
-      {/* Custom Input */}
-      {selectedMood && (
-        <div className="mb-6">
-          <h3 className="text-xl font-semibold mb-4 text-gray-700">
-            Anything specific you want? (Optional)
-          </h3>
-          <input
-            type="text"
-            value={customInput}
-            onChange={(e) => setCustomInput(e.target.value)}
-            placeholder="e.g., movies with dogs, set in space, starring Tom Hanks..."
-            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
-      )}
+        {/* Loading State */}
+        {loading && (
+          <div className="text-center py-8">
+            <div className="inline-flex items-center px-6 py-3 bg-white rounded-lg shadow-md">
+              <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500 mr-3"></div>
+              <span className="text-lg font-medium text-gray-700">
+                Finding {selectedMood?.name} movies...
+              </span>
+            </div>
+          </div>
+        )}
 
-      {/* Get Recommendations Button */}
-      {selectedMood && (
-        <div className="text-center">
-          <button
-            onClick={handleGetRecommendations}
-            disabled={loading}
-            className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white font-bold py-3 px-8 rounded-lg transition-colors duration-200"
-          >
-            {loading ? (
-              <div className="flex items-center">
-                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                Finding perfect movies...
+        {/* Error State */}
+        {error && (
+          <div className="text-center py-8">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-6 max-w-md mx-auto">
+              <div className="text-red-600 font-medium mb-2">Oops! Something went wrong</div>
+              <p className="text-red-500 text-sm mb-4">{error}</p>
+              <button
+                onClick={() => selectedMood && handleMoodClick(selectedMood)}
+                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md text-sm"
+              >
+                Try Again
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Movie Results */}
+        {movies.length > 0 && !loading && (
+          <div>
+            {/* Results Header */}
+            <div className="text-center mb-6">
+              <div className="inline-flex items-center bg-white rounded-full px-6 py-3 shadow-md border">
+                <span className="text-2xl mr-3">{selectedMood?.emoji}</span>
+                <span className="font-semibold text-gray-700">
+                  Perfect for your {selectedMood?.name} mood
+                </span>
               </div>
-            ) : (
-              `Find Movies for My ${selectedMood.name} Mood`
-            )}
-          </button>
-        </div>
-      )}
+            </div>
+
+            {/* Movies Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+              {movies.map((movie, index) => (
+                <div 
+                  key={index}
+                  className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 p-6 border border-gray-200"
+                >
+                  {/* Movie Info */}
+                  <div className="mb-4">
+                    <div className="flex items-start justify-between mb-2">
+                      <h3 className="font-bold text-lg text-gray-800 flex-1 pr-2">
+                        {movie.title}
+                      </h3>
+                      <span className={`
+                        px-2 py-1 rounded-full text-xs font-medium whitespace-nowrap
+                        ${movie.confidence >= 90 ? 'bg-green-100 text-green-800' :
+                          movie.confidence >= 75 ? 'bg-yellow-100 text-yellow-800' :
+                          'bg-gray-100 text-gray-600'}
+                      `}>
+                        {movie.confidence}%
+                      </span>
+                    </div>
+                    
+                    {movie.year && (
+                      <p className="text-sm text-gray-500 mb-2">{movie.year}</p>
+                    )}
+                    
+                    {movie.genre && (
+                      <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full mb-3">
+                        {movie.genre}
+                      </span>
+                    )}
+                    
+                    <p className="text-gray-600 text-sm leading-relaxed">
+                      {movie.reason}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Try Different Mood Button */}
+            <div className="text-center">
+              <button
+                onClick={resetMood}
+                className="bg-gray-500 hover:bg-gray-600 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+              >
+                Try Different Mood
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Empty State (when no mood selected) */}
+        {!selectedMood && movies.length === 0 && !loading && !error && (
+          <div className="text-center py-12">
+            <div className="text-6xl mb-4">🎬</div>
+            <h3 className="text-xl font-medium text-gray-700 mb-2">
+              Select your mood above
+            </h3>
+            <p className="text-gray-500">
+              Click on any mood to get instant movie recommendations
+            </p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

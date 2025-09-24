@@ -21,7 +21,7 @@ const genAI = new GoogleGenerativeAI(getAPIKey());
 // Create a reusable model instance
 export const getGeminiModel = async () => {
   try {
-    return genAI.getGenerativeModel({ model: "gemini-pro" });
+    return genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
   } catch (error) {
     console.error('Failed to initialize Gemini model:', error);
     throw error;
@@ -67,30 +67,20 @@ export const getGeminiModel = async () => {
 // };
 
 // NEW function for mood-based recommendations
-export const getMoodBasedRecommendations = async (moodData) => {
+export const getMoodBasedRecommendations = async (mood) => {
   try {
     const model = await getGeminiModel();
     
-    const { mood, timePreference, customInput } = moodData;
-    
-    let timeConstraint = '';
-    if (timePreference && timePreference.maxRuntime && timePreference.id !== 'any') {
-      if (timePreference.id === 'short') {
-        timeConstraint = 'Runtime should be under 90 minutes.';
-      } else if (timePreference.id === 'medium') {
-        timeConstraint = 'Runtime should be between 90-150 minutes.';
-      } else if (timePreference.id === 'long') {
-        timeConstraint = 'Runtime should be over 150 minutes.';
-      }
-    }
 
-    const prompt = `I'm feeling ${mood.name.toLowerCase()} today. ${mood.description}
+    console.log("gemni Fn" , mood)
+ 
+
+    const prompt = `I'm feeling ${mood.name} today. ${mood.description}
 
     My mood preferences:
     - Preferred genres: ${mood.genres.join(', ')}
     - Mood keywords: ${mood.keywords.join(', ')}
-    ${timeConstraint}
-    ${customInput ? `Additional preferences: ${customInput}` : ''}
+  
 
     Please recommend 8 movies that match this mood perfectly. Focus on popular, well-known movies that are easily available. For each movie, provide:
     - Title
