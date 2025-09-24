@@ -1,46 +1,108 @@
-import React from "react";
-import { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { MovieContext } from "./MovieContext";
 
-function MovieCard({ movieObj }) {
-  const { watchList, handleAddToWatchList } = useContext(MovieContext);
+import { Link } from "react-router-dom";
+import { getMovieVideos } from '../services/movieService.js';
+import TrailerModal from './TrailerModal';
+
+function MovieCard({ movieObject }) {
+  const { watchlist, handleAddtoWatchList, DeleteFromWatchList } = useContext(MovieContext);
+  const [showTrailer, setShowTrailer] = useState(false);
+  const [trailerKey, setTrailerKey] = useState(null);
+  const [loadingTrailer, setLoadingTrailer] = useState(false);
+
   function doesContain() {
-    for (let i = 0; i < watchList.length; i++) {
-      if (watchList[i].id === movieObj.id) {
-        return true;
+    for (let i = 0; i < watchlist?.length; i++) {
+      if (watchlist[i].id === movieObject.id) {
+        return true; // change button to cross
       }
     }
-    return false;
+    return false; // added to my WatchList
   }
 
-  return (
-    <div>
-      <div className="flex justify-evenly">
-        <div
-          className="h-[40vh] w-[180px] bg-cover bg-center rounded-2xl  "
-          style={{
-            backgroundImage: `url(https://image.tmdb.org/t/p/original/${movieObj.poster_path})`,
-          }}
-        >
-          {doesContain() ? (
-            <div className="flex items-center justify-center h-8 w-8 rounded-lg bg-gray-900/60 text-white text-lg">
-              &#10060;
-            </div>
-          ) : (
-            <div
-              onClick={() => handleAddToWatchList(movieObj)}
-              className="flex items-center justify-center h-8 w-8 rounded-lg bg-gray-900/60 text-white text-lg"
-            >
-              &#128525;
-            </div>
-          )}
+  const handleWatchTrailer = async (e) => {
+    e.preventDefault(); // Prevent any parent click events
+    e.stopPropagation();
+    
+    setLoadingTrailer(true);
+    
+    try {
+      const videos = await getMovieVideos(movieObject.id);
+      
+      if (videos.length > 0) {
+        setTrailerKey(videos[0].key);
+      } else {
+        setTrailerKey(null);
+      }
+      
+      setShowTrailer(true);
+    } catch (error) {
+      console.error('Error fetching trailer:', error);
+      setTrailerKey(null);
+      setShowTrailer(true);
+    } finally {
+      setLoadingTrailer(false);
+    }
+  };
 
-          <div className="text-white w-full text-center text-xl p-2 bg-gray-900/60 rounded-lg">
-            {movieObj.title}
+  return (
+    <>
+      <div
+        className="h-[40vh] w-[200px] bg-center bg-cover rounded-xl hover:scale-110 duration-300 hover:cursor-pointer flex flex-col justify-between items-end"
+        style={{
+          backgroundImage: `url(https://image.tmdb.org/t/p/original/${movieObject?.poster_path})`,
+        }}
+      >
+        {doesContain(movieObject) ? (
+          <div 
+            onClick={() => DeleteFromWatchList(movieObject)} 
+            className="m-4 flex justify-center h-8 w-8 items-center rounded-lg bg-gray-900/60"
+          >
+            &#10060;
+            {/* // code for cross */}
           </div>
+        ) : (
+          <div
+            onClick={() => handleAddtoWatchList(movieObject)}
+            className="m-4 flex justify-center h-8 w-8 items-center rounded-lg bg-gray-900/60"
+          >
+            &#128525;
+          </div>
+        )}
+
+        <div className="text-white w-full text-center text-xl p-2 bg-gray-900/70 rounded-lg">
+          {movieObject?.title}
+        </div>
+
+        {/* Action Buttons Container */}
+        <div className="flex gap-2 mb-2">
+          <Link to={`/details/${movieObject?.id}`}>
+            <i className="fa-solid fa-circle-info text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-3 py-2"></i>
+          </Link>
+          
+          <button
+            onClick={handleWatchTrailer}
+            disabled={loadingTrailer}
+            className="text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 flex items-center"
+            title="Watch Trailer"
+          >
+            {loadingTrailer ? (
+              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+            ) : (
+              "▶️"
+            )}
+          </button>
         </div>
       </div>
-    </div>
+
+      {/* Trailer Modal */}
+      <TrailerModal
+        isOpen={showTrailer}
+        onClose={() => setShowTrailer(false)}
+        trailerKey={trailerKey}
+        movieTitle={movieObject?.title}
+      />
+    </>
   );
 }
 
