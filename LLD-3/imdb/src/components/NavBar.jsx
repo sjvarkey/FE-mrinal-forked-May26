@@ -27,6 +27,13 @@ function NavBar() {
           Watchlist
         </Link>
 
+        <Link
+          to="/mood"
+          className="text-gray-300 hover:text-white transition-colors duration-200"
+        >
+         Mood Selector
+        </Link>
+
      
         
       </div>

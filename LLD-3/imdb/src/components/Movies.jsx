@@ -51,7 +51,7 @@ function Movies() {
         {movies &&
           movies.map((movie) => (
             <MovieCard
-              movieObj={movie}
+              movieObject={movie}
              
             />
           ))}
